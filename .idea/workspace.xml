@@ -77,10 +77,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pagination.js.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pagination.js.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/pagination.js.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="26" selection-start="366" selection-end="366" vertical-scroll-proportion="0.3267974" vertical-offset="0" max-vertical-offset="918">
+            <state line="12" column="26" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/application.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="67" column="50" selection-start="3073" selection-end="3073" vertical-scroll-proportion="0.8093682" vertical-offset="932" max-vertical-offset="1900">
               <folding />
             </state>
           </provider>
@@ -112,6 +121,7 @@
         <option value="$PROJECT_DIR$/app/controllers/posts_controller.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/shared/_top_menu.html.erb" />
+        <option value="$PROJECT_DIR$/config/application.rb" />
       </list>
     </option>
   </component>
@@ -773,7 +783,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/pagination.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="26" selection-start="366" selection-end="366" vertical-scroll-proportion="0.3267974" vertical-offset="0" max-vertical-offset="918">
+        <state line="12" column="26" selection-start="366" selection-end="366" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/application.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="50" selection-start="3073" selection-end="3073" vertical-scroll-proportion="0.8093682" vertical-offset="932" max-vertical-offset="1900">
           <folding />
         </state>
       </provider>
