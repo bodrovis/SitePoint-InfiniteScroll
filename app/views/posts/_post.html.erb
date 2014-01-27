@@ -1,0 +1,7 @@
+<div>
+  <h2><%= link_to post.title, post_path(post) %></h2>
+
+  <small><em><%= post.timestamp %></em></small>
+
+  <p><%= truncate(strip_tags(post.body), length: 600) %></p>
+</div>
