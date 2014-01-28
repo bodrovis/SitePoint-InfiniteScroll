@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h1>My posts</h1>
+</div>
+
+<div id="my-posts">
+  <%= render @posts %>
+</div>
+
+<div id="with-button">
+  <%= will_paginate %>
+</div>
+
+<% if @posts.next_page %>
+    <div id="load_more_posts" class="btn btn-primary btn-lg">More posts</div>
+<% end %>
