@@ -6,10 +6,10 @@
   <%= render @posts %>
 </div>
 
-<div id="with-button">
-  <%= will_paginate %>
-</div>
-
 <% if @posts.next_page %>
+    <div id="with-button">
+      <%= will_paginate %>
+    </div>
+
     <div id="load_more_posts" class="btn btn-primary btn-lg">More posts</div>
 <% end %>

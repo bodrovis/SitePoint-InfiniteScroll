@@ -6,6 +6,8 @@
   <%= render @posts %>
 </div>
 
-<div id="infinite-scrolling">
-  <%= will_paginate %>
-</div>
+<% if @posts.next_page %>
+    <div id="infinite-scrolling">
+      <%= will_paginate %>
+    </div>
+<% end %>

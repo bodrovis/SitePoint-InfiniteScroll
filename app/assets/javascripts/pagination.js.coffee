@@ -1,15 +1,21 @@
-root = window ? global
-
 jQuery ->
+  page_regexp = /page=\d+/i
+
+  hash = window.location.hash
+  if hash.match(page_regexp)
+    window.location.hash = ''
+    window.location.search = '?page=' + hash.match(/\d+/)
+
   if $('#infinite-scrolling').size() > 0
-    $(root).bindWithDelay 'scroll', ->
+    $(window).bindWithDelay 'scroll', ->
       more_posts_url = $('.pagination .next_page a').attr('href')
-      if more_posts_url && $(root).scrollTop() > $(document).height() - $(root).height() - 60
-        $('.pagination').text("Loading posts...")
-        $.getScript(more_posts_url)
+      if more_posts_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60
+        $('#infinite-scrolling .pagination').html(
+          '<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />')
+        $.getScript more_posts_url, ->
+          window.location.hash = more_posts_url.match(page_regexp)[0]
       return
     , 100
-    #$(window).scroll()
 
   if $('#with-button').size() > 0
     # Replace pagination
@@ -18,13 +24,15 @@ jQuery ->
 
     $('#load_more_posts').show().click ->
       unless loading_posts
-        more_posts_url = $('.pagination .next_page a').attr('href')
-        $this = $(this)
-        $this.html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />').addClass('disabled')
         loading_posts = true
-        $.getScript more_posts_url, ->
-          $this.text('More posts').removeClass('disabled') if $this
-          loading_posts = false
+        more_posts_url = $('.pagination .next_page a').attr('href')
+        if more_posts_url
+          $this = $(this)
+          $this.html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />').addClass('disabled')
+          $.getScript more_posts_url, ->
+            $this.text('More posts').removeClass('disabled') if $this
+            window.location.hash = more_posts_url.match(page_regexp)[0]
+            loading_posts = false
       return
 
   return
