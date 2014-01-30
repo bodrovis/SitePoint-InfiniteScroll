@@ -2,10 +2,14 @@
   <h1>My posts</h1>
 </div>
 
-<%= will_paginate %>
+<div id="static-pagination">
+  <%= will_paginate %>
+</div>
 
 <div id="my-posts">
+  <div class="page-delimiter first-page" data-page="<%= params[:page] || 1 %>"></div>
   <%= render @posts %>
+
 </div>
 
 <% if @posts.next_page %>

@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bind_with_delay
+//= require waypoints
 //= require pagination

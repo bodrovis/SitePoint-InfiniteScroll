@@ -1,12 +1,27 @@
 jQuery ->
   page_regexp = /page=\d+/i
 
+  window.preparePagination = (el) ->
+    el.waypoint (direction) ->
+      $this = $(this)
+      unless $this.hasClass('first-page') && direction is 'up'
+        page = $this.data('page')
+        page -= 1 if direction is 'up'
+        page_el = $($('#static-pagination li').get(page))
+        unless page_el.hasClass('active')
+          $('#static-pagination .active').removeClass('active')
+          window.location.hash = 'page=' + page
+          page_el.addClass('active')
+
+    return
+
   hash = window.location.hash
   if hash.match(page_regexp)
     window.location.hash = ''
     window.location.search = '?page=' + hash.match(/\d+/)
 
   if $('#infinite-scrolling').size() > 0
+    preparePagination($('.page-delimiter'))
     $(window).bindWithDelay 'scroll', ->
       more_posts_url = $('#infinite-scrolling .next_page a').attr('href')
       if more_posts_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60
@@ -18,6 +33,7 @@ jQuery ->
     , 100
 
   if $('#with-button').size() > 0
+    preparePagination($('.page-delimiter'))
     # Replace pagination
     $('#with-button .pagination').hide()
     loading_posts = false
