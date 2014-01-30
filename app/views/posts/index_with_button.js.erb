@@ -1,6 +1,6 @@
 $('#my-posts').append('<%= j render @posts %>');
-<% if @posts.next_page %>
 $('.pagination').replaceWith('<%= j will_paginate @posts %>');
+<% if @posts.next_page %>
 $('#with-button .pagination').hide();
 <% else %>
 $('#with-button .pagination, #load_more_posts').remove();
