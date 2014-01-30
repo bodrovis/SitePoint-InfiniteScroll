@@ -8,7 +8,7 @@ jQuery ->
 
   if $('#infinite-scrolling').size() > 0
     $(window).bindWithDelay 'scroll', ->
-      more_posts_url = $('.pagination .next_page a').attr('href')
+      more_posts_url = $('#infinite-scrolling .next_page a').attr('href')
       if more_posts_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60
         $('#infinite-scrolling .pagination').html(
           '<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />')
@@ -19,13 +19,13 @@ jQuery ->
 
   if $('#with-button').size() > 0
     # Replace pagination
-    $('.pagination').hide()
+    $('#with-button .pagination').hide()
     loading_posts = false
 
     $('#load_more_posts').show().click ->
       unless loading_posts
         loading_posts = true
-        more_posts_url = $('.pagination .next_page a').attr('href')
+        more_posts_url = $('#with-button .next_page a').attr('href')
         if more_posts_url
           $this = $(this)
           $this.html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />').addClass('disabled')

@@ -3,5 +3,5 @@ $('#my-posts').append('<%= j render @posts %>');
 $('.pagination').replaceWith('<%= j will_paginate @posts %>');
 <% else %>
 $(window).unbind('scroll');
-$('.pagination').remove();
+$('#infinite-scrolling .pagination').remove();
 <% end %>
