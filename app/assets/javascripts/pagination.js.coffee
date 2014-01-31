@@ -5,7 +5,7 @@ jQuery ->
     el.waypoint (direction) ->
       $this = $(this)
       unless $this.hasClass('first-page') && direction is 'up'
-        page = $this.data('page')
+        page = parseInt($this.data('page'), 10)
         page -= 1 if direction is 'up'
         page_el = $($('#static-pagination li').get(page))
         unless page_el.hasClass('active')
