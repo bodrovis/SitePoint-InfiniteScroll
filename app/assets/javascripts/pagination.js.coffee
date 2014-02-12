@@ -2,7 +2,7 @@ jQuery ->
   page_regexp = /\d+$/
 
   pushPage = (page) ->
-    History.pushState null, null, "?page=" + page
+    History.pushState null, "InfiniteScrolling | Page " + page, "?page=" + page
     return
 
   window.preparePagination = (el) ->
@@ -14,7 +14,6 @@ jQuery ->
         page_el = $($('#static-pagination li').get(page))
         unless page_el.hasClass('active')
           $('#static-pagination .active').removeClass('active')
-          #window.location.hash = 'page=' + page
           pushPage(page)
           page_el.addClass('active')
     return
