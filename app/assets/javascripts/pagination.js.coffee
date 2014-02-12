@@ -19,9 +19,9 @@ jQuery ->
     return
 
   hash = window.location.hash
-  if hash.match(page_regexp)
+  if hash.match(/page=\d+/i)
     window.location.hash = ''
-    window.location.search = '?page=' + hash.match(/\d+/)
+    window.location.search = '?page=' + hash.match(/page=(\d+)/i)[1]
 
   if $('#infinite-scrolling').size() > 0
     preparePagination($('.page-delimiter'))
