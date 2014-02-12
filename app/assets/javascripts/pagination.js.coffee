@@ -20,7 +20,7 @@ jQuery ->
 
   hash = window.location.hash
   if hash.match(/page=\d+/i)
-    window.location.hash = ''
+    window.location.hash = '' # Otherwise the hash will remain after the page reload
     window.location.search = '?page=' + hash.match(/page=(\d+)/i)[1]
 
   if $('#infinite-scrolling').size() > 0
