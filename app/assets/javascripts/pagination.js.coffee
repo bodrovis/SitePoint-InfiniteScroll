@@ -1,24 +1,27 @@
 jQuery ->
-  page_regexp = /page=\d+/i
+  page_regexp = /\d+$/
+
+  pushPage = (page) ->
+    History.pushState null, "InfiniteScrolling | Page " + page, "?page=" + page
+    return
 
   window.preparePagination = (el) ->
     el.waypoint (direction) ->
       $this = $(this)
       unless $this.hasClass('first-page') && direction is 'up'
-        page = $this.data('page')
+        page = parseInt($this.data('page'), 10)
         page -= 1 if direction is 'up'
         page_el = $($('#static-pagination li').get(page))
         unless page_el.hasClass('active')
           $('#static-pagination .active').removeClass('active')
-          window.location.hash = 'page=' + page
+          pushPage(page)
           page_el.addClass('active')
-
     return
 
   hash = window.location.hash
-  if hash.match(page_regexp)
-    window.location.hash = ''
-    window.location.search = '?page=' + hash.match(/\d+/)
+  if hash.match(/page=\d+/i)
+    window.location.hash = '' # Otherwise the hash will remain after the page reload
+    window.location.search = '?page=' + hash.match(/page=(\d+)/i)[1]
 
   if $('#infinite-scrolling').size() > 0
     preparePagination($('.page-delimiter'))
@@ -28,7 +31,7 @@ jQuery ->
         $('#infinite-scrolling .pagination').html(
           '<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />')
         $.getScript more_posts_url, ->
-          window.location.hash = more_posts_url.match(page_regexp)[0]
+          pushPage(more_posts_url.match(page_regexp)[0])
       return
     , 100
 
@@ -47,7 +50,7 @@ jQuery ->
           $this.html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />').addClass('disabled')
           $.getScript more_posts_url, ->
             $this.text('More posts').removeClass('disabled') if $this
-            window.location.hash = more_posts_url.match(page_regexp)[0]
+            pushPage(more_posts_url.match(page_regexp)[0])
             loading_posts = false
       return
 

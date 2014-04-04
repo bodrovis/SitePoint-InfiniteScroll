@@ -1,9 +1,9 @@
 var delimiter =
-        $('<div class="page-delimiter" data-page="<%= params[:page] || 1 %>"></div>');
+        $('<div class="page-delimiter" data-page="<%= params[:page] %>"></div>');
 $('#my-posts').append(delimiter);
 $('#my-posts').append('<%= j render @posts %>');
 $('.pagination').replaceWith('<%= j will_paginate @posts %>');
-window.preparePagination(delimiter);
+preparePagination(delimiter);
 <% unless @posts.next_page %>
 $('#infinite-scrolling .pagination').remove();
 <% end %>
